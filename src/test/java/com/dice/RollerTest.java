@@ -1,18 +1,17 @@
 package com.dice;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.lenient;
-import static org.mockito.Mockito.when;
-import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Random;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -37,5 +36,13 @@ public class RollerTest {
 
         //then
         assert  1 <= rolledDice & rolledDice <= 5;
+    }
+
+    @Test
+    public void rollMultiplesDices() {
+        String s = "3D8";
+        List<Integer> list = new ArrayList<Integer>();
+        list = roller.rollMultiplesDices(s);
+        assert list.stream().count() == 3;
     }
 }

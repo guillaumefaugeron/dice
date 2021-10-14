@@ -3,6 +3,9 @@ package com.dice;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -33,5 +36,24 @@ public class ParserTest {
         assertThrows( CustomException.class,() -> parser.parse(input));
     }
 
+
+    @Test
+    public void shouldNotBeAbleToSimulateANegativeFaceDice() {
+        String input = "-5";
+        assertThrows( CustomException.class,() -> parser.parse(input));
+    }
+
+
+    @Test
+    public void shouldBeAbleToSimulateMultiplesDices() throws CustomException {
+        String s = "3D8";
+        Map<String, Integer> stringIntegerMap = new HashMap<>();
+        stringIntegerMap = parser.parseList(s);
+        int numberOfDices = stringIntegerMap.get("numberOfDice");
+        int numberOfFaces = stringIntegerMap.get("numberOfFaces");
+
+        assertEquals(3, numberOfDices);
+        assertEquals(8, numberOfFaces);
+    }
 
 }

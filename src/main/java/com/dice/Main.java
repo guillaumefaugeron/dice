@@ -2,9 +2,8 @@ package com.dice;
 
 public class Main {
 
-    public static void main(String[] args) {
-        System.out.println("le main");
-        Roller roller = new Roller();
-        System.out.print(roller.roll(5));
+    public static void main(String[] args) throws CustomException {
+        Parser parser = new Parser();
+        System.out.print(parser.parseList("3D8+152"));
     }
 }
